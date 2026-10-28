@@ -122,3 +122,109 @@
 
 # editor = TextEditor()
 # editor.write("Hello ")
+
+# real time event processing using queue
+# event_queue = []
+# def add_event(event):
+#     event_queue.append(event)
+#     print(f"Event '{event}' added to the queue.")
+
+# def process_event():
+#     if event_queue:
+#         event = event_queue.pop(0)
+#         print(f"Processing event: {event}")
+#     else:
+#         print("No events to process.")
+
+# def display_events():
+#     if event_queue:
+#         print("Current events in the queue:")
+#         for event in event_queue:
+#             print(event)
+#     else:
+#         print("No events in the queue.")
+
+# def cancel_event(event):
+#     if event in event_queue:
+#         event_queue.remove(event)
+#         print(f"Event '{event}' canceled.")
+#     else:
+#         print(f"Event '{event}' not found in the queue.")
+
+# enqueue --> add an element to the end of the queue (append)
+# dequeue --> remove an element from the front of the queue (pop(0))
+
+# hash table using chaining
+# size = 10
+# hash_table = [[] for _ in range(size)]
+
+# def insert(key):
+#     idx = key % size
+#     if key not in hash_table[idx]:
+#         hash_table[idx].append(key)
+#         print(f"Key {key} inserted.")
+#     else:
+#         print(f"Key {key} already exists.")
+
+# def search(key):
+#     idx = key % size
+#     if key in hash_table[idx]:
+#         print(f"Key {key} found.")
+#     else:
+#         print(f"Key {key} not found.")
+
+# def delete(key):
+#     idx = key % size
+#     if key in hash_table[idx]:
+#         hash_table[idx].remove(key)
+#         print(f"Key {key} deleted.")
+#     else:
+#         print(f"Key {key} not found.")
+
+# def display():
+#     print("Hash Table:")
+#     for i in range(size):
+#         print(f"Index {i}: {hash_table[i]}")
+
+# hash table using linear probing
+# size = 10
+# hash_table = []
+
+# for i in range(size):
+#     hash_table.append("EMPTY")
+
+# def insert(key):
+#     idx = key % size
+#     if key not in hash_table:
+#         for i in range(size):
+#             probe_idx = (idx + i) % size
+#             if hash_table[probe_idx] == "EMPTY" or hash_table[probe_idx] == "DELETED":
+#                 hash_table[probe_idx] = key
+#                 print(f"Key {key} inserted.")
+#                 return
+#     else:
+#         print(f"Key {key} already exists.")
+
+# def search(key):
+#     idx = key % size
+#     for i in range(size):
+#         probe_idx = (idx + i) % size
+#         if hash_table[probe_idx] == key:
+#             print(f"Key {key} found.")
+#             return
+#     print(f"Key {key} not found.")
+
+# def delete(key):
+#     idx = key % size
+#     for i in range(size):
+#         probe_idx = (idx + i) % size
+#         if hash_table[probe_idx] == key:
+#             hash_table[probe_idx] = "DELETED"
+#             print(f"Key {key} deleted.")
+#             return
+#     print(f"Key {key} not found.")
+
+# def display():
+#     print("Hash Table:")
+#     for i in range(size):
+#         print(f"Index {i}: {hash_table[i]}")
