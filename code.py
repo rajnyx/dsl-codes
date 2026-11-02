@@ -164,34 +164,57 @@
 #     global document
 #     print("Current Document:", document)
 
-
+# Implement a real-time event processing system using a Queue data structure.
+# The system should support the following features:
+# - Add an Event: When a new event occurs, it should be added to the event queue.
+# - Process the Next Event: The system should process and remove the event that has been in the queue the longest.
+# - Display Pending Events: Show all the events currently waiting to be processed.
+# - Cancel an Event: An event can be canceled if it has not been processed
 # real time event processing using queue
 # event_queue = []
+
+# # Add event
 # def add_event(event):
 #     event_queue.append(event)
-#     print(f"Event '{event}' added to the queue.")
+#     print("Event added")
 
+# # Process event
 # def process_event():
 #     if event_queue:
-#         event = event_queue.pop(0)
-#         print(f"Processing event: {event}")
+#         event_queue.pop(0)
+#         print("Event processed")
 #     else:
-#         print("No events to process.")
+#         print("No events to process")
 
+# # Display events
 # def display_events():
-#     if event_queue:
-#         print("Current events in the queue:")
-#         for event in event_queue:
-#             print(event)
-#     else:
-#         print("No events in the queue.")
+#     print("Current events:")
+#     for event in event_queue:
+#         print(event)
 
+# # Cancel event
 # def cancel_event(event):
 #     if event in event_queue:
 #         event_queue.remove(event)
-#         print(f"Event '{event}' canceled.")
+#         print("Event cancelled")
 #     else:
-#         print(f"Event '{event}' not found in the queue.")
+#         print("Event not found")
+
+
+# # Main program
+# add_event("Meeting")
+# add_event("Workshop")
+# add_event("Seminar")
+
+# display_events()
+
+# process_event()
+
+# display_events()
+
+# cancel_event("Seminar")
+
+# display_events()
 
 # enqueue --> add an element to the end of the queue (append)
 # dequeue --> remove an element from the front of the queue (pop(0))
