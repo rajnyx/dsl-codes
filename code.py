@@ -251,156 +251,112 @@
 #     for i in range(size):
 #         print(f"Index {i}: {hash_table[i]}")
 
-# hash table using linear probing
-# size = 10
-# hash_table = []
-
-# for i in range(size):
-#     hash_table.append("EMPTY")
-
-# def insert(key):
-#     idx = key % size
-#     if key not in hash_table:
-#         for i in range(size):
-#             probe_idx = (idx + i) % size
-#             if hash_table[probe_idx] == "EMPTY" or hash_table[probe_idx] == "DELETED":
-#                 hash_table[probe_idx] = key
-#                 print(f"Key {key} inserted.")
-#                 return
-#     else:
-#         print(f"Key {key} already exists.")
-
-# def search(key):
-#     idx = key % size
-#     for i in range(size):
-#         probe_idx = (idx + i) % size
-#         if hash_table[probe_idx] == key:
-#             print(f"Key {key} found.")
-#             return
-#     print(f"Key {key} not found.")
-
-# def delete(key):
-#     idx = key % size
-#     for i in range(size):
-#         probe_idx = (idx + i) % size
-#         if hash_table[probe_idx] == key:
-#             hash_table[probe_idx] = "DELETED"
-#             print(f"Key {key} deleted.")
-#             return
-#     print(f"Key {key} not found.")
-
-# def display():
-#     print("Hash Table:")
-#     for i in range(size):
-#         print(f"Index {i}: {hash_table[i]}")
-
 # Implement various operations on a Binary Search Tree, such as insertion, deletion, display, and search.
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.left = None
-#         self.right = None
+# Create a node
+def create_node(data):
+    return {"data": data, "left": None, "right": None}
 
 
-# # Insert a node
-# def insert(root, data):
-#     if root is None:
-#         return Node(data)
+# Insert a node
+def insert(root, data):
+    if root is None:
+        return create_node(data)
 
-#     if data < root.data:
-#         root.left = insert(root.left, data)
-#     else:
-#         root.right = insert(root.right, data)
+    if data < root["data"]:
+        root["left"] = insert(root["left"], data)
+    else:
+        root["right"] = insert(root["right"], data)
 
-#     return root
-
-
-# # Search a node
-# def search(root, key):
-#     if root is None:
-#         return False
-
-#     if root.data == key:
-#         return True
-#     elif key < root.data:
-#         return search(root.left, key)
-#     else:
-#         return search(root.right, key)
+    return root
 
 
-# # Display BST (Inorder)
-# def display(root):
-#     if root:
-#         display(root.left)
-#         print(root.data, end=" ")
-#         display(root.right)
+# Search a node
+def search(root, key):
+    if root is None:
+        return False
+
+    if root["data"] == key:
+        return True
+    elif key < root["data"]:
+        return search(root["left"], key)
+    else:
+        return search(root["right"], key)
 
 
-# # Find minimum value
-# def find_min(root):
-#     while root.left:
-#         root = root.left
-#     return root
+# Display BST (Inorder)
+def display(root):
+    if root:
+        display(root["left"])
+        print(root["data"], end=" ")
+        display(root["right"])
 
 
-# # Delete a node
-# def delete(root, key):
-#     if root is None:
-#         return None
-
-#     if key < root.data:
-#         root.left = delete(root.left, key)
-
-#     elif key > root.data:
-#         root.right = delete(root.right, key)
-
-#     else:
-#         if root.left is None:
-#             return root.right
-
-#         elif root.right is None:
-#             return root.left
-
-#         temp = find_min(root.right)
-#         root.data = temp.data
-#         root.right = delete(root.right, temp.data)
-
-#     return root
+# Find minimum value
+def find_min(root):
+    while root["left"]:
+        root = root["left"]
+    return root
 
 
-# # Main program
-# root = None
+# Delete a node
+def delete(root, key):
+    if root is None:
+        return None
 
-# while True:
-#     print("\n\n1. Insert")
-#     print("2. Search")
-#     print("3. Delete")
-#     print("4. Display")
-#     print("5. Exit")
+    if key < root["data"]:
+        root["left"] = delete(root["left"], key)
 
-#     choice = int(input("Enter choice: "))
+    elif key > root["data"]:
+        root["right"] = delete(root["right"], key)
 
-#     if choice == 1:
-#         value = int(input("Enter value: "))
-#         root = insert(root, value)
+    else:
+        if root["left"] is None:
+            return root["right"]
 
-#     elif choice == 2:
-#         value = int(input("Enter value to search: "))
-#         if search(root, value):
-#             print("Value found")
-#         else:
-#             print("Value not found")
+        elif root["right"] is None:
+            return root["left"]
 
-#     elif choice == 3:
-#         value = int(input("Enter value to delete: "))
-#         root = delete(root, value)
+        temp = find_min(root["right"])
+        root["data"] = temp["data"]
+        root["right"] = delete(root["right"], temp["data"])
 
-#     elif choice == 4:
-#         print("BST in sorted order:")
-#         display(root)
+    return root
 
-#     elif choice == 5:
-#         break
 
-#     else:
-#         print("Invalid choice")
+# Main program
+root = None
+
+while True:
+    print("\n1. Insert")
+    print("2. Search")
+    print("3. Delete")
+    print("4. Display")
+    print("5. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        value = int(input("Enter value: "))
+        root = insert(root, value)
+
+    elif choice == 2:
+        value = int(input("Enter value to search: "))
+        if search(root, value):
+            print("Value found")
+        else:
+            print("Value not found")
+
+    elif choice == 3:
+        value = int(input("Enter value to delete: "))
+        root = delete(root, value)
+
+    elif choice == 4:
+        print("BST in sorted order:")
+        display(root)
+        print()
+
+    elif choice == 5:
+        break
+
+    else:
+        print("Invalid choice")
